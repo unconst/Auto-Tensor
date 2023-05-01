@@ -1,7 +1,7 @@
 # Auto-Tensor: An Autonomous Bittensor Experiment 
 
 Auto-Tensor is a fork of Auto-GPT but with openai's engine removed and the bittensor network injected. Just like AutoGPT, the agent chains together LLM "thoughts", into an autononous agent which runs on your computer. 
-The difference is that Auto-Tensor's llm chat completions come from a decentralized network of miners on the Bittensor network. 
+The difference is that Auto-Tensor's thoughts come from a decentralized network of miners on the Bittensor network. 
 
 ## 🚀 Features
 
