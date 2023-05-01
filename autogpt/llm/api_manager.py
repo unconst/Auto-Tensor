@@ -50,8 +50,6 @@ class ApiManager(metaclass=Singleton):
         response = self.llm( content = messages )
         logger.debug(f"Response: {response}")
         print ('response', response )
-        print ('what the fuck simeplenamespce exists')
-        from types import SimpleNamespace
         r = SimpleNamespace()
         r.choices = []
         r.choices.append( SimpleNamespace() )
