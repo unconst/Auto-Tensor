@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import openai
 import bittensor as bt
+from types import SimpleNamespace
+
 
 from autogpt.config import Config
 from autogpt.llm.modelsinfo import COSTS
