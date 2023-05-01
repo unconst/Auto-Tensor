@@ -5,12 +5,13 @@ The difference is that Auto-Tensor's thoughts come from a decentralized network 
 
 ## 🚀 Features
 
-- 🌐 Internet access for searches and information gathering
-- 💾 Long-term and short-term memory management
-- 🧠 GPT-4 instances for text generation
-- 🔗 Access to popular websites and platforms
-- 🗃️ File storage and summarization with GPT-3.5
-- 🔌 Extensibility with Plugins
+✅ 🌐 Internet access for searches and information gathering
+✅ 💾 Long-term and short-term memory management
+✅ 🧠 GPT-4 instances for text generation
+✅ 🔗 Access to popular websites and platforms
+✅ 🗃️ File storage and summarization with GPT-3.5
+✅ 🔌 Extensibility with Plugins
+❌ ⛓️ Rely on a centralized AI provider
 
 ## Quickstart
 
