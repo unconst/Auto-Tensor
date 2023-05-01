@@ -11,7 +11,7 @@ The difference is that Auto-Tensor's thoughts come from a decentralized network 
 ✅ 🔗 Access to popular websites and platforms \
 ✅ 🗃️ File storage and summarization \ 
 ✅ 🔌 Extensibility with Plugins \
-❌ ⛓️ Reliance on a centralized AI provider \
+❌ ⛓️ Reliance on a centralized AI provider
 
 ## Quickstart
 
