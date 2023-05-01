@@ -9,7 +9,7 @@ The difference is that Auto-Tensor's thoughts come from a decentralized network 
 ✅ 💾 Long-term and short-term memory management \
 ✅ 🧠 Bittensor access for text generation \
 ✅ 🔗 Access to popular websites and platforms \
-✅ 🗃️ File storage and summarization \ 
+✅ 🗃️ File storage and summarization \
 ✅ 🔌 Extensibility with Plugins \
 ❌ ⛓️ Reliance on a centralized AI provider
 
