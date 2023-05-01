@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from autogpt.logs import logger
+from typing import List, Dict, Tuple
 
 try:
     from playwright.sync_api import sync_playwright
@@ -49,7 +50,7 @@ def scrape_text(url: str) -> str:
     return text
 
 
-def scrape_links(url: str) -> str | list[str]:
+def scrape_links(url: str) -> str | List[str]:
     """Scrape links from a webpage
 
     Args:

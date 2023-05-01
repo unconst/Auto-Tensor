@@ -3,11 +3,12 @@
 import os
 import sys
 import unittest
+from typing import Dict
 
 try:
     from autogpt.memory.milvus import MilvusMemory
 
-    def mock_config() -> dict:
+    def mock_config() -> Dict:
         """Mock the config object for testing purposes."""
         # Return a mock config object with the required attributes
         return type(

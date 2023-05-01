@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import List, Optional, Tuple
 from urllib.parse import urlparse
 from zipimport import zipimporter
+from typing import List, Dict, Tuple
 
 import openapi_python_client
 import requests
@@ -19,7 +20,7 @@ from autogpt.logs import logger
 from autogpt.models.base_open_ai_plugin import BaseOpenAIPlugin
 
 
-def inspect_zip_for_modules(zip_path: str, debug: bool = False) -> list[str]:
+def inspect_zip_for_modules(zip_path: str, debug: bool = False) -> List[str]:
     """
     Inspect a zipfile for a modules.
 
@@ -28,7 +29,7 @@ def inspect_zip_for_modules(zip_path: str, debug: bool = False) -> list[str]:
         debug (bool, optional): Enable debug logging. Defaults to False.
 
     Returns:
-        list[str]: The list of module names found or empty list if none were found.
+        List[str]: The list of module names found or empty list if none were found.
     """
     result = []
     with zipfile.ZipFile(zip_path, "r") as zfile:
@@ -52,7 +53,7 @@ def write_dict_to_json_file(data: dict, file_path: str) -> None:
         json.dump(data, file, indent=4)
 
 
-def fetch_openai_plugins_manifest_and_spec(cfg: Config) -> dict:
+def fetch_openai_plugins_manifest_and_spec(cfg: Config) -> Dict:
     """
     Fetch the manifest for a list of OpenAI plugins.
         Args:
@@ -129,7 +130,7 @@ def create_directory_if_not_exists(directory_path: str) -> bool:
 
 def initialize_openai_plugins(
     manifests_specs: dict, cfg: Config, debug: bool = False
-) -> dict:
+) -> Dict:
     """
     Initialize OpenAI plugins.
     Args:
@@ -179,7 +180,7 @@ def initialize_openai_plugins(
 
 def instantiate_openai_plugin_clients(
     manifests_specs_clients: dict, cfg: Config, debug: bool = False
-) -> dict:
+) -> Dict:
     """
     Instantiates BaseOpenAIPlugin instances for each OpenAI plugin.
     Args:

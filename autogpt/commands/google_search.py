@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 
 from duckduckgo_search import ddg
+from typing import List, Dict, Tuple
 
 from autogpt.commands.command import command
 from autogpt.config import Config
@@ -44,7 +45,7 @@ def google_search(query: str, num_results: int = 8) -> str:
     bool(CFG.google_api_key),
     "Configure google_api_key.",
 )
-def google_official_search(query: str, num_results: int = 8) -> str | list[str]:
+def google_official_search(query: str, num_results: int = 8) -> str | List[str]:
     """Return the results of a Google search using the official Google API
 
     Args:

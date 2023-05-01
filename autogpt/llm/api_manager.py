@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import openai
+import bittensor as bt
 
 from autogpt.config import Config
 from autogpt.llm.modelsinfo import COSTS
@@ -14,6 +15,7 @@ class ApiManager(metaclass=Singleton):
         self.total_completion_tokens = 0
         self.total_cost = 0
         self.total_budget = 0
+        self.llm = bt.prompting()
 
     def reset(self):
         self.total_prompt_tokens = 0
@@ -39,31 +41,23 @@ class ApiManager(metaclass=Singleton):
         Returns:
         str: The AI's response.
         """
+
         cfg = Config()
         if temperature is None:
             temperature = cfg.temperature
-        if deployment_id is not None:
-            response = openai.ChatCompletion.create(
-                deployment_id=deployment_id,
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                api_key=cfg.openai_api_key,
-            )
-        else:
-            response = openai.ChatCompletion.create(
-                model=model,
-                messages=messages,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                api_key=cfg.openai_api_key,
-            )
+
+        print ('messages', messages )
+        response = self.llm( content = messages )
         logger.debug(f"Response: {response}")
-        prompt_tokens = response.usage.prompt_tokens
-        completion_tokens = response.usage.completion_tokens
+        print ('response', response )
+        r = SimpleNamespace()
+        r.choices = []
+        r.choices.append( SimpleNamespace() )
+        r.choices[0].message = { 'content': response }
+        prompt_tokens = 0
+        completion_tokens = 0
         self.update_cost(prompt_tokens, completion_tokens, model)
-        return response
+        return r
 
     def update_cost(self, prompt_tokens, completion_tokens, model):
         """

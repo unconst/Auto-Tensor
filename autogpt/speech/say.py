@@ -1,6 +1,7 @@
 """ Text to speech module """
 import threading
 from threading import Semaphore
+from typing import List, Dict, Tuple
 
 from autogpt.config import Config
 from autogpt.speech.base import VoiceBase
@@ -31,7 +32,7 @@ def say_text(text: str, voice_index: int = 0) -> None:
     thread.start()
 
 
-def _get_voice_engine(config: Config) -> tuple[VoiceBase, VoiceBase]:
+def _get_voice_engine(config: Config) -> Tuple[VoiceBase, VoiceBase]:
     """Get the voice engine to use for the given configuration"""
     default_voice_engine = GTTSVoice()
     if config.elevenlabs_api_key:

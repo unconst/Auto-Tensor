@@ -3,9 +3,10 @@ from __future__ import annotations
 
 from bs4 import BeautifulSoup
 from requests.compat import urljoin
+from typing import List, Dict, Tuple
 
 
-def extract_hyperlinks(soup: BeautifulSoup, base_url: str) -> list[tuple[str, str]]:
+def extract_hyperlinks(soup: BeautifulSoup, base_url: str) -> List[Tuple[str, str]]:
     """Extract hyperlinks from a BeautifulSoup object
 
     Args:
@@ -21,7 +22,7 @@ def extract_hyperlinks(soup: BeautifulSoup, base_url: str) -> list[tuple[str, st
     ]
 
 
-def format_hyperlinks(hyperlinks: list[tuple[str, str]]) -> list[str]:
+def format_hyperlinks(hyperlinks: List[Tuple[str, str]]) -> List[str]:
     """Format hyperlinks to be displayed to the user
 
     Args:

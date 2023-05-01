@@ -18,7 +18,7 @@ session.headers.update({"User-Agent": CFG.user_agent})
 @validate_url
 def get_response(
     url: str, timeout: int = 10
-) -> tuple[None, str] | tuple[Response, None]:
+) -> Tuple[None, str] | Tuple[Response, None]:
     """Get the response from a URL
 
     Args:
@@ -26,7 +26,7 @@ def get_response(
         timeout (int): The timeout for the HTTP request
 
     Returns:
-        tuple[None, str] | tuple[Response, None]: The response and error message
+        Tuple[None, str] | Tuple[Response, None]: The response and error message
 
     Raises:
         ValueError: If the URL is invalid
@@ -78,14 +78,14 @@ def scrape_text(url: str) -> str:
     return text
 
 
-def scrape_links(url: str) -> str | list[str]:
+def scrape_links(url: str) -> str | List[str]:
     """Scrape links from a webpage
 
     Args:
         url (str): The URL to scrape links from
 
     Returns:
-       str | list[str]: The scraped links
+       str | List[str]: The scraped links
     """
     response, error_message = get_response(url)
     if error_message:

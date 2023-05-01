@@ -9,6 +9,7 @@ from colorama import Fore, Style
 from redis.commands.search.field import TextField, VectorField
 from redis.commands.search.indexDefinition import IndexDefinition, IndexType
 from redis.commands.search.query import Query
+from typing import List, Dict, Tuple
 
 from autogpt.llm import get_ada_embedding
 from autogpt.logs import logger
@@ -101,7 +102,7 @@ class RedisMemory(MemoryProviderSingleton):
         pipe.execute()
         return _text
 
-    def get(self, data: str) -> list[Any] | None:
+    def get(self, data: str) -> List[Any] | None:
         """
         Gets the data from the memory that is most relevant to the given data.
 
@@ -121,7 +122,7 @@ class RedisMemory(MemoryProviderSingleton):
         self.redis.flushall()
         return "Obliviated"
 
-    def get_relevant(self, data: str, num_relevant: int = 5) -> list[Any] | None:
+    def get_relevant(self, data: str, num_relevant: int = 5) -> List[Any] | None:
         """
         Returns all the data in the memory that is relevant to the given data.
         Args:

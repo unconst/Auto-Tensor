@@ -10,7 +10,7 @@ from autogpt.llm import call_ai_function
     "Analyze Code",
     '"code": "<full_code_string>"',
 )
-def analyze_code(code: str) -> list[str]:
+def analyze_code(code: str) -> List[str]:
     """
     A function that takes in a string and returns a response from create chat
       completion api call.
@@ -22,7 +22,7 @@ def analyze_code(code: str) -> list[str]:
             improve the code.
     """
 
-    function_string = "def analyze_code(code: str) -> list[str]:"
+    function_string = "def analyze_code(code: str) -> List[str]:"
     args = [code]
     description_string = (
         "Analyzes the given code and returns a list of suggestions for improvements."

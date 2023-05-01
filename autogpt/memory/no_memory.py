@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Any
 
 from autogpt.memory.base import MemoryProviderSingleton
+from typing import List, Dict, Tuple
 
 
 class NoMemory(MemoryProviderSingleton):
@@ -33,7 +34,7 @@ class NoMemory(MemoryProviderSingleton):
         """
         return ""
 
-    def get(self, data: str) -> list[Any] | None:
+    def get(self, data: str) -> List[Any] | None:
         """
         Gets the data from the memory that is most relevant to the given data.
         NoMemory always returns None.
@@ -53,7 +54,7 @@ class NoMemory(MemoryProviderSingleton):
         """
         return ""
 
-    def get_relevant(self, data: str, num_relevant: int = 5) -> list[Any] | None:
+    def get_relevant(self, data: str, num_relevant: int = 5) -> List[Any] | None:
         """
         Returns all the data in the memory that is relevant to the given data.
         NoMemory always returns None.

@@ -272,11 +272,3 @@ class Config(metaclass=Singleton):
 def check_openai_api_key() -> None:
     """Check if the OpenAI API key is set in config.py or as an environment variable."""
     cfg = Config()
-    if not cfg.openai_api_key:
-        print(
-            Fore.RED
-            + "Please set your OpenAI API key in .env or as an environment variable."
-            + Fore.RESET
-        )
-        print("You can get your key from https://platform.openai.com/account/api-keys")
-        exit(1)

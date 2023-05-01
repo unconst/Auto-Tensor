@@ -8,6 +8,7 @@ from typing import Generator
 import requests
 from colorama import Back, Fore
 from requests.adapters import HTTPAdapter, Retry
+from typing import List, Dict, Tuple
 
 from autogpt.commands.command import command
 from autogpt.config import Config
@@ -201,14 +202,14 @@ def delete_file(filename: str) -> str:
 
 
 @command("list_files", "List Files in Directory", '"directory": "<directory>"')
-def list_files(directory: str) -> list[str]:
+def list_files(directory: str) -> List[str]:
     """lists files in a directory recursively
 
     Args:
         directory (str): The directory to search in
 
     Returns:
-        list[str]: A list of files found in the directory
+        List[str]: A list of files found in the directory
     """
     found_files = []
 

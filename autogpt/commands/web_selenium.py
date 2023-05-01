@@ -34,7 +34,7 @@ CFG = Config()
     '"url": "<url>", "question": "<what_you_want_to_find_on_website>"',
 )
 @validate_url
-def browse_website(url: str, question: str) -> tuple[str, WebDriver]:
+def browse_website(url: str, question: str) -> Tuple[str, WebDriver]:
     """Browse a website and return the answer and links to the user
 
     Args:
@@ -63,7 +63,7 @@ def browse_website(url: str, question: str) -> tuple[str, WebDriver]:
     return f"Answer gathered from website: {summary_text} \n \n Links: {links}", driver
 
 
-def scrape_text_with_selenium(url: str) -> tuple[WebDriver, str]:
+def scrape_text_with_selenium(url: str) -> Tuple[WebDriver, str]:
     """Scrape text from a website using selenium
 
     Args:
@@ -134,7 +134,7 @@ def scrape_text_with_selenium(url: str) -> tuple[WebDriver, str]:
     return driver, text
 
 
-def scrape_links_with_selenium(driver: WebDriver, url: str) -> list[str]:
+def scrape_links_with_selenium(driver: WebDriver, url: str) -> List[str]:
     """Scrape links from a website using selenium
 
     Args:

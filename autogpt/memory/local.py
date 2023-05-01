@@ -6,6 +6,7 @@ from typing import Any, List
 
 import numpy as np
 import orjson
+from typing import List, Dict, Tuple
 
 from autogpt.llm import get_ada_embedding
 from autogpt.memory.base import MemoryProviderSingleton
@@ -89,7 +90,7 @@ class LocalCache(MemoryProviderSingleton):
         self.data = CacheContent()
         return "Obliviated"
 
-    def get(self, data: str) -> list[Any] | None:
+    def get(self, data: str) -> List[Any] | None:
         """
         Gets the data from the memory that is most relevant to the given data.
 
@@ -100,7 +101,7 @@ class LocalCache(MemoryProviderSingleton):
         """
         return self.get_relevant(data, 1)
 
-    def get_relevant(self, text: str, k: int) -> list[Any]:
+    def get_relevant(self, text: str, k: int) -> List[Any]:
         """ "
         matrix-vector mult to find score-for-each-row-of-matrix
          get indices for top-k winning scores
@@ -119,7 +120,7 @@ class LocalCache(MemoryProviderSingleton):
 
         return [self.data.texts[i] for i in top_k_indices]
 
-    def get_stats(self) -> tuple[int, tuple[int, ...]]:
+    def get_stats(self) -> Tuple[int, Tuple[int, ...]]:
         """
         Returns: The stats of the local cache.
         """
