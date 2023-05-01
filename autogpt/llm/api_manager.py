@@ -3,6 +3,7 @@ from __future__ import annotations
 import openai
 import bittensor as bt
 
+from types import SimpleNamespace
 from autogpt.config import Config
 from autogpt.llm.modelsinfo import COSTS
 from autogpt.logs import logger
@@ -41,7 +42,6 @@ class ApiManager(metaclass=Singleton):
         Returns:
         str: The AI's response.
         """
-
         cfg = Config()
         if temperature is None:
             temperature = cfg.temperature
@@ -50,6 +50,8 @@ class ApiManager(metaclass=Singleton):
         response = self.llm( content = messages )
         logger.debug(f"Response: {response}")
         print ('response', response )
+        print ('what the fuck simeplenamespce exists')
+        from types import SimpleNamespace
         r = SimpleNamespace()
         r.choices = []
         r.choices.append( SimpleNamespace() )
