@@ -11,12 +11,21 @@ from autogpt.singleton import Singleton
 
 
 class ApiManager(metaclass=Singleton):
-    def __init__(self):
+    def __init__(self, user_text_prompting_pool = True):
         self.total_prompt_tokens = 0
         self.total_completion_tokens = 0
         self.total_cost = 0
         self.total_budget = 0
-        self.llm = bt.prompting()
+
+        self.user_text_prompting_pool = user_text_prompting_pool
+        if self.user_text_prompting_pool:
+            self.wallet = bt.wallet()
+            self.met = bt.subtensor().metagraph(1)
+            self.pprompt = bt.text_prompting_pool( keypair = self.wallet.hotkey, metagraph = self.met )
+
+        else:
+            self.llm = bt.prompting()
+        
 
     def reset(self):
         self.total_prompt_tokens = 0
@@ -53,7 +62,24 @@ class ApiManager(metaclass=Singleton):
                 messages[i][ "role" ] = "user"
 
         print ('messages', messages )
-        response = self.llm( content = messages )
+
+        if self.user_text_prompting_pool:
+            pass
+            roles = [el["role"] for el in messages]
+            messages = [el["content"] for el in messages]
+            resps = self.pprompt( roles = roles, messages = messages, timeout = 24)
+            
+            resps = [res.completion for res in resps]
+
+            response = "no response"
+            for res in resps:
+                if len(res) > 10:
+                    response = res
+                    break
+
+        else:
+            response = self.llm( content = messages )
+        
         logger.debug(f"Response: {response}")
         print ('response', response )
         r = SimpleNamespace()
