@@ -133,26 +133,28 @@ def generate_aiconfig_manual() -> AIConfig:
             "Develop and manage multiple businesses autonomously",
         ]
 
+    # API is currently free, so no budget needed
+    api_budget = 0.01
     # Get API Budget from User
-    logger.typewriter_log(
-        "Enter your budget for API calls: ",
-        Fore.GREEN,
-        "For example: $1.50",
-    )
-    logger.info("Enter nothing to let the AI run without monetary limit")
-    api_budget_input = utils.clean_input(
-        f"{Fore.LIGHTBLUE_EX}Budget{Style.RESET_ALL}: $"
-    )
-    if api_budget_input == "":
-        api_budget = 0.0
-    else:
-        try:
-            api_budget = float(api_budget_input.replace("$", ""))
-        except ValueError:
-            logger.typewriter_log(
-                "Invalid budget input. Setting budget to unlimited.", Fore.RED
-            )
-            api_budget = 0.0
+    # logger.typewriter_log(
+    #     "Enter your budget for API calls: ",
+    #     Fore.GREEN,
+    #     "For example: $1.50",
+    # )
+    # logger.info("Enter nothing to let the AI run without monetary limit")
+    # api_budget_input = utils.clean_input(
+    #     f"{Fore.LIGHTBLUE_EX}Budget{Style.RESET_ALL}: $"
+    # )
+    # if api_budget_input == "":
+    #     api_budget = 0.0
+    # else:
+    #     try:
+    #         api_budget = float(api_budget_input.replace("$", ""))
+    #     except ValueError:
+    #         logger.typewriter_log(
+    #             "Invalid budget input. Setting budget to unlimited.", Fore.RED
+    #         )
+    #         api_budget = 0.0
 
     return AIConfig(ai_name, ai_role, ai_goals, api_budget)
 

@@ -47,6 +47,11 @@ class ApiManager(metaclass=Singleton):
         if temperature is None:
             temperature = cfg.temperature
 
+        # While system prompts are injected/ignored, we instead convert the system role into user role
+        for i, message in enumerate(messages):
+            if message[ "role" ] == "system":
+                messages[i][ "role" ] = "user"
+
         print ('messages', messages )
         response = self.llm( content = messages )
         logger.debug(f"Response: {response}")
