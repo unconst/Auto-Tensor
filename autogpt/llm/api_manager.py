@@ -61,7 +61,7 @@ class ApiManager(metaclass=Singleton):
             if message[ "role" ] == "system":
                 messages[i][ "role" ] = "user"
 
-        print ('messages', messages )
+        print ('\nmessages', messages )
 
         if self.user_text_prompting_pool:
             pass
@@ -80,7 +80,7 @@ class ApiManager(metaclass=Singleton):
             response = self.llm( content = messages )
         
         logger.debug(f"Response: {response}")
-        print ('Start response:\n', response )
+        print ('\nStart response:\n', response )
         print("End response\n")
         r = SimpleNamespace()
         r.choices = []
