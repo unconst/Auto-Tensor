@@ -134,7 +134,7 @@ def generate_aiconfig_manual() -> AIConfig:
         ]
 
     # API is currently free, so no budget needed
-    api_budget = 0.01
+    api_budget = 0.0
     # Get API Budget from User
     # logger.typewriter_log(
     #     "Enter your budget for API calls: ",
