@@ -16,9 +16,18 @@ The difference is that Auto-Tensor's thoughts come from a decentralized network 
 ## Quickstart
 
 1. Install Bittensor's backend.
+
+Option 1:
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/opentensor/bittensor/master/scripts/install.sh)"
 cd ~/.bittensor/bittensor && git checkout origin text_prompting && python3 -m pip install -e .
+```
+Option 2:
+```
+git clone https://github.com/opentensor/bittensor
+cd bittensor
+git checkout text_prompting
+python3 -m pip install -e .
 ```
 
 3. Clone this repository and install it.
