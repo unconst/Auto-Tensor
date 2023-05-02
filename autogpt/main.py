@@ -58,7 +58,7 @@ def run_auto_gpt(
     if not cfg.skip_news:
         motd = get_latest_bulletin()
         if motd:
-            logger.typewriter_log("NEWS: ", Fore.GREEN, motd)
+            logger.typewriter_log("NEWS: ", Fore.GREEN, motd.replace("Welcome to Auto-GPT","Welcome to Auto-Tensor"))
         git_branch = get_current_git_branch()
         if git_branch and git_branch != "stable":
             logger.typewriter_log(
