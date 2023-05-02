@@ -71,11 +71,10 @@ class ApiManager(metaclass=Singleton):
             
             resps = [res.completion for res in resps]
 
-            response = "no response"
-            for res in resps:
-                if len(res) > 10:
-                    response = res
-                    break
+            response = max(resps, key=len)
+            if len(response) == 0:
+                response = "No response from the network"
+
 
         else:
             response = self.llm( content = messages )

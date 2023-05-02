@@ -23,7 +23,7 @@ def prompt_user() -> AIConfig:
 
     # Construct the prompt
     logger.typewriter_log(
-        "Welcome to Auto-GPT! ",
+        "Welcome to Auto-Tensor! ",
         Fore.GREEN,
         "run with '--help' for more information.",
         speak_text=True,
