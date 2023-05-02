@@ -4,6 +4,7 @@ import bittensor as bt
 from types import SimpleNamespace
 
 
+from types import SimpleNamespace
 from autogpt.config import Config
 from autogpt.llm.modelsinfo import COSTS
 from autogpt.logs import logger
@@ -51,7 +52,6 @@ class ApiManager(metaclass=Singleton):
         Returns:
         str: The AI's response.
         """
-
         cfg = Config()
         if temperature is None:
             temperature = cfg.temperature
