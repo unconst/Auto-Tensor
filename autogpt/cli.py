@@ -79,9 +79,9 @@ def main(
     install_plugin_deps: bool,
 ) -> None:
     """
-    Welcome to AutoGPT an experimental open-source application showcasing the capabilities of the GPT-4 pushing the boundaries of AI.
+    Welcome to AutoTensor an experimental open-source application showcasing the capabilities of the GPT-4 pushing the boundaries of AI.
 
-    Start an Auto-GPT assistant.
+    Start an Auto-Tensor assistant.
     """
     # Put imports inside function to avoid importing everything when starting the CLI
     from autogpt.main import run_auto_gpt

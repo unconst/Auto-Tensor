@@ -120,7 +120,7 @@ def create_config(
         logger.typewriter_log(
             "WARNING: ",
             Fore.YELLOW,
-            f"{Back.LIGHTYELLOW_EX}Auto-GPT will now be able to download and save files to your machine.{Back.RESET} "
+            f"{Back.LIGHTYELLOW_EX}Auto-Tensor will now be able to download and save files to your machine.{Back.RESET} "
             + "It is recommended that you monitor any files it downloads carefully.",
         )
         logger.typewriter_log(

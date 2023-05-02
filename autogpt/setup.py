@@ -38,7 +38,7 @@ def prompt_user() -> AIConfig:
     )
 
     user_desire = utils.clean_input(
-        f"{Fore.LIGHTBLUE_EX}I want Auto-GPT to{Style.RESET_ALL}: "
+        f"{Fore.LIGHTBLUE_EX}I want Auto-Tensor to{Style.RESET_ALL}: "
     )
 
     if user_desire == "":
