@@ -60,7 +60,7 @@ def run_auto_gpt(
         if motd:
             logger.typewriter_log("NEWS: ", Fore.GREEN, motd.replace("Welcome to Auto-GPT","Welcome to Auto-Tensor"))
         git_branch = get_current_git_branch()
-        if git_branch and git_branch no in ("stable", "master"):
+        if git_branch and git_branch not in ("stable", "master"):
             logger.typewriter_log(
                 "WARNING: ",
                 Fore.RED,
