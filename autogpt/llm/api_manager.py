@@ -12,7 +12,7 @@ from autogpt.singleton import Singleton
 
 
 class ApiManager(metaclass=Singleton):
-    def __init__(self, user_text_prompting_pool = True):
+    def __init__(self, user_text_prompting_pool = False):
         self.total_prompt_tokens = 0
         self.total_completion_tokens = 0
         self.total_cost = 0
