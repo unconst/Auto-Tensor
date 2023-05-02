@@ -1,8 +1,7 @@
 from __future__ import annotations
 
+import openai
 import bittensor as bt
-from types import SimpleNamespace
-
 
 from types import SimpleNamespace
 from autogpt.config import Config
@@ -12,21 +11,12 @@ from autogpt.singleton import Singleton
 
 
 class ApiManager(metaclass=Singleton):
-    def __init__(self, user_text_prompting_pool = False):
+    def __init__(self):
         self.total_prompt_tokens = 0
         self.total_completion_tokens = 0
         self.total_cost = 0
         self.total_budget = 0
-
-        self.user_text_prompting_pool = user_text_prompting_pool
-        if self.user_text_prompting_pool:
-            self.wallet = bt.wallet()
-            self.met = bt.subtensor().metagraph(1)
-            self.pprompt = bt.text_prompting_pool( keypair = self.wallet.hotkey, metagraph = self.met )
-
-        else:
-            self.llm = bt.prompting()
-        
+        self.llm = bt.prompting()
 
     def reset(self):
         self.total_prompt_tokens = 0
@@ -55,41 +45,12 @@ class ApiManager(metaclass=Singleton):
         cfg = Config()
         if temperature is None:
             temperature = cfg.temperature
-
-        # While system prompts are injected/ignored, we instead convert the system role into user role
-        for i, message in enumerate(messages):
-            if message[ "role" ] == "system":
-                messages[i][ "role" ] = "user"
-
-        print ('\nmessages', messages )
-
-        if self.user_text_prompting_pool:
-            pass
-            roles = [el["role"] for el in messages]
-            messages = [el["content"] for el in messages]
-            resps = self.pprompt( roles = roles, messages = messages, timeout = 24)
-            
-            resps = [res.completion for res in resps]
-
-            response = max(resps, key=len)
-            if len(response) == 0:
-                response = "No response from the network"
-
-
-        else:
-            response = self.llm( content = messages )
-        
-        logger.debug(f"Response: {response}")
-        print ('\nStart response:\n', response )
-        print("End response\n")
-        r = SimpleNamespace()
-        r.choices = []
-        r.choices.append( SimpleNamespace() )
-        r.choices[0].message = { 'content': response }
-        prompt_tokens = 0
-        completion_tokens = 0
-        self.update_cost(prompt_tokens, completion_tokens, model)
-        return r
+        completion = self.llm( content = messages )
+        return_val = SimpleNamespace()
+        return_val.choices = []
+        return_val.choices.append( SimpleNamespace() )
+        return_val.choices[0].message = { 'content': completion }
+        return return_val
 
     def update_cost(self, prompt_tokens, completion_tokens, model):
         """
