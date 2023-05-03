@@ -56,9 +56,6 @@ class ApiManager(metaclass=Singleton):
         print ('\n\nStart response:\n', response )
         print("End response\n")
 
-
-
-        response = self.llm( content = messages )
         return_val = SimpleNamespace()
         return_val.choices = []
         return_val.choices.append( SimpleNamespace() )
