@@ -50,6 +50,7 @@ class ApiManager(metaclass=Singleton):
 
 
         responses = bt.prompt( content = messages, return_all = True )
+        print("\n\nALL responses", responses, "\n\n")
         response = self.pick_response(responses)
         
         logger.debug(f"Response: {response}")
