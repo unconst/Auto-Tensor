@@ -73,6 +73,7 @@ class ApiManager(metaclass=Singleton):
         responses (list): A list of strings with the responses from the network
         """
         for res in responses:
+            res=res.strip()
             if not "Here is my inquiry: In the context of Fourier" in res and len(res) > 1:
                 return res.replace("That is a great question!", "")
         return "No response given"
