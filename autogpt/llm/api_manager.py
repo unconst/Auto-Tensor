@@ -1,8 +1,7 @@
 from __future__ import annotations
 
+import openai
 import bittensor as bt
-from types import SimpleNamespace
-
 
 from types import SimpleNamespace
 from autogpt.config import Config
@@ -12,11 +11,19 @@ from autogpt.singleton import Singleton
 
 
 class ApiManager(metaclass=Singleton):
+<<<<<<< HEAD
     def __init__(self ):
+=======
+    def __init__(self):
+>>>>>>> 59685d705f77b5709e8108dd22c361337fa07e7f
         self.total_prompt_tokens = 0
         self.total_completion_tokens = 0
         self.total_cost = 0
         self.total_budget = 0
+<<<<<<< HEAD
+=======
+        self.llm = bt.prompting()
+>>>>>>> 59685d705f77b5709e8108dd22c361337fa07e7f
 
     def reset(self):
         self.total_prompt_tokens = 0
@@ -42,45 +49,29 @@ class ApiManager(metaclass=Singleton):
         Returns:
         str: The AI's response.
         """
-        cfg = Config()
-        if temperature is None:
-            temperature = cfg.temperature
 
-        # While system prompts are injected/ignored, we instead convert the system role into user role
         for i, message in enumerate(messages):
             if message[ "role" ] == "system":
                 messages[i][ "role" ] = "user"
 
-        print ('\nmessages', messages )
+        print ('\n\nmessages', messages )
 
 
         responses = bt.prompt( content = messages, return_all = True )
         response = self.pick_response(responses)
         
         logger.debug(f"Response: {response}")
-        print ('\nStart response:\n', response )
+        print ('\n\nStart response:\n', response )
         print("End response\n")
-        r = SimpleNamespace()
-        r.choices = []
-        r.choices.append( SimpleNamespace() )
-        r.choices[0].message = { 'content': response }
-        prompt_tokens = 0
-        completion_tokens = 0
-        self.update_cost(prompt_tokens, completion_tokens, model)
-        return r
-    
-    def pick_response(self, responses):
-        """
-        Simple algorithm for picking the best response from the network
-        
-        Args:
-        responses (list): A list of strings with the responses from the network
-        """
-        for res in responses:
-            if not "Here is my inquiry: In the context of Fourier" in res and len(res) > 1:
-                return res.replace("That is a great question!", "")
-        return "No response given"
 
+
+
+        response = self.llm( content = messages )
+        return_val = SimpleNamespace()
+        return_val.choices = []
+        return_val.choices.append( SimpleNamespace() )
+        return_val.choices[0].message = { 'content': response }
+        return return_val
 
     def update_cost(self, prompt_tokens, completion_tokens, model):
         """
