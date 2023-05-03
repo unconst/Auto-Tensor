@@ -11,19 +11,11 @@ from autogpt.singleton import Singleton
 
 
 class ApiManager(metaclass=Singleton):
-<<<<<<< HEAD
     def __init__(self ):
-=======
-    def __init__(self):
->>>>>>> 59685d705f77b5709e8108dd22c361337fa07e7f
         self.total_prompt_tokens = 0
         self.total_completion_tokens = 0
         self.total_cost = 0
         self.total_budget = 0
-<<<<<<< HEAD
-=======
-        self.llm = bt.prompting()
->>>>>>> 59685d705f77b5709e8108dd22c361337fa07e7f
 
     def reset(self):
         self.total_prompt_tokens = 0
