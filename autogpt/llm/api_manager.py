@@ -12,21 +12,11 @@ from autogpt.singleton import Singleton
 
 
 class ApiManager(metaclass=Singleton):
-    def __init__(self, user_text_prompting_pool = False):
+    def __init__(self ):
         self.total_prompt_tokens = 0
         self.total_completion_tokens = 0
         self.total_cost = 0
         self.total_budget = 0
-
-        self.user_text_prompting_pool = user_text_prompting_pool
-        if self.user_text_prompting_pool:
-            self.wallet = bt.wallet()
-            self.met = bt.subtensor().metagraph(1)
-            self.pprompt = bt.text_prompting_pool( keypair = self.wallet.hotkey, metagraph = self.met )
-
-        else:
-            self.llm = bt.prompting()
-        
 
     def reset(self):
         self.total_prompt_tokens = 0
@@ -63,21 +53,9 @@ class ApiManager(metaclass=Singleton):
 
         print ('\nmessages', messages )
 
-        if self.user_text_prompting_pool:
-            pass
-            roles = [el["role"] for el in messages]
-            messages = [el["content"] for el in messages]
-            resps = self.pprompt( roles = roles, messages = messages, timeout = 24)
-            
-            resps = [res.completion for res in resps]
 
-            response = max(resps, key=len)
-            if len(response) == 0:
-                response = "No response from the network"
-
-
-        else:
-            response = self.llm( content = messages )
+        responses = bt.prompt( content = messages, return_all = True )
+        response = self.pick_response(responses)
         
         logger.debug(f"Response: {response}")
         print ('\nStart response:\n', response )
@@ -90,6 +68,19 @@ class ApiManager(metaclass=Singleton):
         completion_tokens = 0
         self.update_cost(prompt_tokens, completion_tokens, model)
         return r
+    
+    def pick_response(self, responses):
+        """
+        Simple algorithm for picking the best response from the network
+        
+        Args:
+        responses (list): A list of strings with the responses from the network
+        """
+        for res in responses:
+            if not "Here is my inquiry: In the context of Fourier" in res and len(res) > 1:
+                return res.replace("That is a great question!", "")
+        return "No response given"
+
 
     def update_cost(self, prompt_tokens, completion_tokens, model):
         """
