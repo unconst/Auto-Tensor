@@ -73,6 +73,18 @@ class ApiManager(metaclass=Singleton):
         return_val.choices[0].message = { 'content': response }
         return return_val
 
+    def pick_response(self, responses):
+        """
+        Simple algorithm for picking the best response from the network
+        
+        Args:
+        responses (list): A list of strings with the responses from the network
+        """
+        for res in responses:
+            if not "Here is my inquiry: In the context of Fourier" in res and len(res) > 1:
+                return res.replace("That is a great question!", "")
+        return "No response given"
+
     def update_cost(self, prompt_tokens, completion_tokens, model):
         """
         Update the total cost, prompt tokens, and completion tokens.
